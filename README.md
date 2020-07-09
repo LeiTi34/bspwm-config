@@ -1,4 +1,3 @@
-# bspwm-config
+# Dotfiles
 
 My dotfiles
-# MC-TODO-App
