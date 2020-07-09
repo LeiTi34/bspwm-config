@@ -16,9 +16,9 @@ eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 
 # Dotnet Core
-export PATH="$PATH:/home/user/.dotnet/tools"
+#export PATH="$PATH:/home/user/.dotnet/tools"
 # Android Studio
-export _JAVA_AWT_WM_NONREPARENTING=1
+#export _JAVA_AWT_WM_NONREPARENTING=1
 # Alacritty no DPI scale
 export WINIT_X11_SCALE_FACTOR=1
 
