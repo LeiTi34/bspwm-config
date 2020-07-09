@@ -1,67 +1,58 @@
-function fish_prompt --description 'Prompt ausgeben'
-	set -l last_status $status
-    set -l normal (set_color normal)
+set fish_prompt_pwd_dir_length 1
+set __fish_git_prompt_show_informative_status 1
 
-    # Hack; fish_config only copies the fish_prompt function (see #736)
-    if not set -q -g __fish_classic_git_functions_defined
-        set -g __fish_classic_git_functions_defined
+# Fish command and parameter colors
+set fish_color_command green
+set fish_color_param $fish_color_normal
 
-        function __fish_repaint_user --on-variable fish_color_user --description "Event handler, repaint when fish_color_user changes"
-            if status --is-interactive
-                commandline -f repaint 2>/dev/null
-            end
-        end
+# Git prompt
+set __fish_git_prompt_showdirtystate 'yes'
+set __fish_git_prompt_showupstream 'yes'
 
-        function __fish_repaint_host --on-variable fish_color_host --description "Event handler, repaint when fish_color_host changes"
-            if status --is-interactive
-                commandline -f repaint 2>/dev/null
-            end
-        end
+set __fish_git_prompt_color_branch brown
+set __fish_git_prompt_color_dirtystate FCBC47
+set __fish_git_prompt_color_stagedstate yellow
+set __fish_git_prompt_color_upstream cyan
+set __fish_git_prompt_color_cleanstate green
+set __fish_git_prompt_color_invalidstate red
 
-        function __fish_repaint_status --on-variable fish_color_status --description "Event handler; repaint when fish_color_status changes"
-            if status --is-interactive
-                commandline -f repaint 2>/dev/null
-            end
-        end
+# Git Characters
+set __fish_git_prompt_char_dirtystate '*'
+set __fish_git_prompt_char_stateseparator ' '
+set __fish_git_prompt_char_untrackedfiles ' …'
+set __fish_git_prompt_char_cleanstate '✓'
+set __fish_git_prompt_char_stagedstate '⇢ '
+set __fish_git_prompt_char_conflictedstate "✕"
 
-        function __fish_repaint_bind_mode --on-variable fish_key_bindings --description "Event handler; repaint when fish_key_bindings changes"
-            if status --is-interactive
-                commandline -f repaint 2>/dev/null
-            end
-        end
+set __fish_git_prompt_char_upstream_prefix ''
+set __fish_git_prompt_char_upstream_equal ''
+set __fish_git_prompt_char_upstream_ahead '⇡'
+set __fish_git_prompt_char_upstream_behind '⇣'
+set __fish_git_prompt_char_upstream_diverged '⇡⇣'
 
-        # initialize our new variables
-        if not set -q __fish_classic_git_prompt_initialized
-            set -qU fish_color_user
-            or set -U fish_color_user -o green
-            set -qU fish_color_host
-            or set -U fish_color_host -o cyan
-            set -qU fish_color_status
-            or set -U fish_color_status red
-            set -U __fish_classic_git_prompt_initialized
-        end
-    end
+function _print_in_color
+  set -l string $argv[1]
+  set -l color  $argv[2]
 
-    set -l color_cwd
-    set -l prefix
-    set -l suffix
-    switch "$USER"
-        case root toor
-            if set -q fish_color_cwd_root
-                set color_cwd $fish_color_cwd_root
-            else
-                set color_cwd $fish_color_cwd
-            end
-            set suffix '#'
-        case '*'
-            set color_cwd $fish_color_cwd
-            set suffix '>'
-    end
+  set_color $color
+  printf $string
+  set_color normal
+end
 
-    set -l prompt_status
-    if test $last_status -ne 0
-        set prompt_status ' ' (set_color $fish_color_status) "[$last_status]" "$normal"
-    end
+function _prompt_color_for_status
+  if test $argv[1] -eq 0
+    echo magenta
+  else
+    echo red
+  end
+end
 
-    echo -n -s (set_color $fish_color_user) "$USER" $normal @ (set_color $fish_color_host) (prompt_hostname) $normal ' ' (set_color $color_cwd) (prompt_pwd) $normal (__fish_vcs_prompt) $normal $prompt_status $suffix " "
+function fish_prompt
+  set -l last_status $status
+
+  _print_in_color ""(prompt_pwd) blue
+
+  __fish_git_prompt " (%s)"
+
+  _print_in_color " ❯ " (_prompt_color_for_status $last_status)
 end

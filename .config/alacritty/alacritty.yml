@@ -109,9 +109,10 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
+#    family: Awesome
     family: Hack
-
     # The `style` can be specified to pick a specific face.
+    # 
     #style: Regular
 
   # Bold font face
@@ -148,7 +149,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 8.0
+  size: 11.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -214,16 +215,27 @@ colors:
   #  text: '0xeaeaea'
   #  background: '0x404040'
 
-  # Normal colors
+  # Custom colors
   normal:
     black:   '0x2d2d2d'
-    red:     '0xf2777a'
+    red:     '0xff3334'
     green:   '0x99cc99'
-    yellow:  '0xffcc66'
+    yellow:  '0xfee484'
     blue:    '0x6699cc'
-    magenta: '0xcc99cc'
-    cyan:    '0x66cccc'
+    magenta: '0xff217c'
+    cyan:    '0x0cffe1'
     white:   '0xd3d0c8'
+
+  # Normal colors
+  #normal:
+    #black:   '0x2d2d2d'
+    #red:     '0xf2777a'
+    #green:   '0x99cc99'
+    #yellow:  '0xffcc66'
+    #blue:    '0x6699cc'
+    #magenta: '0xcc99cc'
+    #cyan:    '0x66cccc'
+    #white:   '0xd3d0c8'
 
   # Bright colors
   #bright:

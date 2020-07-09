@@ -7,11 +7,20 @@ killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 if type "xrandr"; then
-  for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-    MONITOR=$m polybar --reload white &
+  for m in $(xrandr --query | grep " connected [^(]" | cut -d" " -f1); do
+    echo $m
+    MONITOR=$m polybar --reload xmonad &
+    #MONITOR=$m polybar --reload datetime &
+    #MONITOR=$m polybar --reload settings &
+    #MONITOR=$m polybar --reload ws &
+    #MONITOR=$m polybar --reload stats &
   done
 else
-  polybar --reload white &
+  polybar --reload xmonad &
+  #polybar --reload datetime &
+  #polybar --reload settings &
+  #polybar --reload ws &
+  #polybar --reload stats &
 fi
 
 # Launch bar1 and bar2

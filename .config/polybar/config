@@ -1,4 +1,123 @@
+[colors]
+fg = ${xrdb:foreground}
+bg = #dd483c6c 
+;${xrdb:background}
+1a = ${xrdb:color0}
+1b = ${xrdb:color8}
+2a = ${xrdb:color1}
+2b = ${xrdb:color9}
+3a = ${xrdb:color2}
+3b = ${xrdb:color10}
+4a = ${xrdb:color3}
+4b = ${xrdb:color11}
+5a = ${xrdb:color4}
+5b = ${xrdb:color12}
+6a = ${xrdb:color5}
+6b = ${xrdb:color13}
+7a = ${xrdb:color6}
+7b = ${xrdb:color14}
+8a = ${xrdb:color7}
+8b = ${xrdb:color15}
+
+[vars]
+size = 30
+spacer = 24
+offset = 5
+
+[bar/xmonad]
+monitor = ${env:MONITOR:}
+padding-left=2
+padding-right=2
+foreground=#ffffff
+background=${colors.bg}
+height = ${vars.spacer}
+width=100%
+offset-x= 0
+offset-y = ${vars.offset}
+module-margin-left=2
+modules-left = time date wlan system-bluetooth-bluetoothctl backlight battery0 player-mpris-simple updates-arch-combined 
+modules-center = xmonad
+modules-right = network pulseaudio-control cpu memory
+font-0 = Hack:size=10;3
+font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=11;3"
+font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=11;3"
+font-3 = "Font Awesome 5 Brands:pixelsize=11;3"
+font-4 = "MaterialDesignIcons-Regular:pixelsize=11;2"
+font-5 = "MaterialDesignIcons-Regular:pixelsize=10;3"
+
+[bar/datetime]
+monitor = ${env:MONITOR:}
+background=#0cffe1
+foreground=${colors.bg}
+height = ${vars.spacer}
+width=160
+offset-x= 5
+offset-y = ${vars.offset}
+module-margin-right=2
+modules-center=time date
+font-0 = Hack:size=10;3
+font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=11;3"
+font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=11;3"
+font-3 = "Font Awesome 5 Brands:pixelsize=11;3"
+font-4 = "MaterialDesignIcons-Regular:pixelsize=11;2"
+font-5 = "MaterialDesignIcons-Regular:pixelsize=10;3"
+
+[bar/settings]
+monitor = ${env:MONITOR:}
+background=#ff217c
+foreground=${colors.bg}
+height = ${vars.spacer}
+width=300
+offset-x= 175
+offset-y = ${vars.offset}
+module-margin-right=2
+modules-center=pulseaudio-control backlight battery0 
+;player-mpris-simple
+font-0 = Hack:size=10;3
+font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=11;3"
+font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=11;3"
+font-3 = "Font Awesome 5 Brands:pixelsize=11;3"
+font-4 = "MaterialDesignIcons-Regular:pixelsize=11;2"
+font-5 = "MaterialDesignIcons-Regular:pixelsize=10;3"
+
+[bar/ws]
+monitor = ${env:MONITOR:}
+background=#ffd486
+foreground=${colors.bg}
+height = ${vars.spacer}
+width=700
+offset-x= 50%:-350
+offset-y = ${vars.offset}
+module-margin-right=2
+modules-center=xmonad
+font-0 = Hack:size=10;3
+font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=11;3"
+font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=11;3"
+font-3 = "Font Awesome 5 Brands:pixelsize=11;3"
+font-4 = "MaterialDesignIcons-Regular:pixelsize=11;2"
+font-5 = "MaterialDesignIcons-Regular:pixelsize=10;3"
+
+[bar/stats]
+monitor = ${env:MONITOR:}
+background=#ffffff
+foreground=${colors.bg}
+height = ${vars.spacer}
+width=470
+offset-x= 100%:-475
+offset-y = ${vars.offset}
+module-margin-right=2
+modules-center=system-bluetooth-bluetoothctl wlan network updates-arch-combined cpu memory
+font-0 = Hack:size=10;3
+font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=11;3"
+font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=11;3"
+font-3 = "Font Awesome 5 Brands:pixelsize=11;3"
+font-4 = "MaterialDesignIcons-Regular:pixelsize=11;2"
+font-5 = "MaterialDesignIcons-Regular:pixelsize=10;3"
+
+
 [bar/white]
+polybar-msg = true
+enable-ipc = true
 
 ;------------;
 ; DIMENSIONS ;
@@ -30,9 +149,11 @@ override-redirect = false
 ;-------;
 
 font-0 = Hack:size=10;3
-font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=12;3"
-font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=12;3"
-font-3 = "Font Awesome 5 Brands:pixelsize=12;3"
+font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=11;3"
+font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=11;3"
+font-3 = "Font Awesome 5 Brands:pixelsize=11;3"
+font-4 = "MaterialDesignIcons-Regular:pixelsize=11;2"
+font-5 = "MaterialDesignIcons-Regular:pixelsize=10;3"
 
 ;--------;
 ; COLORS ;
@@ -53,7 +174,7 @@ padding-left = 2
 padding-right = 2
 module-margin = 1.5
 
-modules-left = time date volume backlight battery0 player-mpris-simple
+modules-left = time date pulseaudio-control backlight battery0 player-mpris-simple
 modules-center = bspwm
 modules-right = system-bluetooth-bluetoothctl wlan network updates-arch-combined cpu memory
 
@@ -66,6 +187,12 @@ tray-detached = true
 ; MODULES ;
 ;---------;
 
+[module/xmonad]
+type = custom/script
+exec = xmonad-log
+
+tail = true
+
 [module/bspwm]
 type = internal/bspwm
 
@@ -74,7 +201,7 @@ type = internal/bspwm
 ; But if you rename your bspwm monitors with bspc -n this option will no longer
 ; behave correctly.
 ; Default: true
-pin-workspaces = false
+pin-workspaces = true
 
 ; Output mode flags after focused state label
 ; Default: false
@@ -101,25 +228,30 @@ fuzzy-match = true
 label-mode = %name%
 ;label-mode-padding = 1
 
-label-occupied-foreground = #d3d0c8
+;format= <label-monitor> <label-state>
+
+
+label-monitor = %name%
+
+label-occupied-foreground =${colors.bg}
 label-occupied-padding = 1
 label-occupied = %name%
 
 label-focused = %name%
 label-focused-padding = 1
-;label-focused-background = #2d2d2d
-label-focused-foreground = #d3d0c8
+label-focused-background =#0cffe1
+label-focused-foreground =${colors.bg}
 ;label-focused-overline =  f2777a
-label-focused-overline =  f9d72d
+label-focused-overline = #
 
 label-visible = %name%
 ;label-visible-padding = 1
 ;label-visible-underline = #555555
 label-visible-background = #2d2d2d
 
-label-urgent-foreground = #2d2d2d
-label-urgent-background = #ffcc66
-;label-urgent-padding = 1
+label-urgent-foreground =${colors.bg}
+label-urgent-background =#ff217c
+label-urgent-padding = 1
 label-urgent = %name%
 
 ;label-separator = |
@@ -147,7 +279,7 @@ label-unfocused = %name%
 label-focused = %name%
 label-focused-padding = 1
 label-focused-background = #2d2d2d
-label-focused-foreground = #d3d0c8
+label-focused-foreground = ${colors.bg}
 label-focused-overline =  f2777a
 
 label-visible = %name%
@@ -169,11 +301,12 @@ type = internal/date
 
 interval = 1.0
 
-date =  %H:%M
+date = 󰅐 %H:%M
+;date = 󰅐 %H:%M
 
 [module/date]
 type = internal/date
-date =  %d.%m
+date =󰸗 %d.%m
 ;date =  %e %B - %A
 label = %date%
 
@@ -193,13 +326,13 @@ label-full = %percentage%%
 
 format-discharging = <ramp-capacity> <label-discharging>
 format-full = <ramp-capacity> <label-full>
-format-charging =  <label-charging>
+format-charging = 󰊘 <label-charging>
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
+ramp-capacity-0 = 󰂎
+ramp-capacity-1 = 󰁻
+ramp-capacity-2 = 󰁾
+ramp-capacity-3 = 󰂁
+ramp-capacity-4 = 󰁹
 
 [module/battery1]
 type = internal/battery
@@ -218,11 +351,11 @@ format-discharging = <ramp-capacity> <label-discharging>
 format-full = <ramp-capacity> <label-full>
 format-charging =  <label-charging>
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
+ramp-capacity-0 = 󰂎
+ramp-capacity-1 = 󰁻
+ramp-capacity-2 = 󰁾
+ramp-capacity-3 = 󰂁
+ramp-capacity-4 = 󰁹
 
 [module/volume]
 type = internal/alsa
@@ -268,9 +401,9 @@ format = <ramp> <label>
 
 label = %percentage%%
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
+ramp-0 = 󰃞
+ramp-1 = 󰃟
+ramp-2 = 󰃠
 
 [module/wlan]
 type = internal/network
@@ -279,23 +412,23 @@ interface = wlp2s0
 
 interval = 5
 
-label-connected =  %essid%
-label-disconnected = 
-label-disconnected-overline = f2777a
+label-connected = 󰤥
+label-disconnected = 󰤭
+;label-disconnected-overline = f2777a
 
 [module/cpu]
 type = internal/cpu
-label =  %percentage%%
+label = 󰓅 %percentage%%
 
 
 [module/memory]
 type = internal/memory
-label =  %gb_used%
+label = 󰍛 %gb_used%
 
 [module/network]
 type = internal/network
 interface = wlp2s0
-label-connected =  %downspeed%  %upspeed%
+label-connected = 󰜮 %downspeed% 󰜷 %upspeed%
 
 [module/player-mpris-simple]
 type = custom/script
@@ -320,3 +453,20 @@ type = custom/script
 exec = ~/git/polybar-scripts/polybar-scripts/system-bluetooth-bluetoothctl/system-bluetooth-bluetoothctl.sh
 tail = true
 click-left = ~/git/polybar-scripts/polybar-scripts/system-bluetooth-bluetoothctl/system-bluetooth-bluetoothctl.sh --toggle &
+
+[module/pulseaudio-control]
+type = custom/script
+tail = true
+label=%output%
+;format-underline = ${colors.blue}
+
+exec = ~/.config/polybar/scripts/pulseaudio-control.bash listen
+click-right = exec alacritty -e pulsemixer &
+click-left = ~/.config/polybar/scripts/pulseaudio-control.bash togmute
+click-middle = ~/.config/polybar/scripts/pulseaudio-control.bash next-sink
+scroll-up = ~/.config/polybar/scripts/pulseaudio-control.bash up
+scroll-down = ~/.config/polybar/scripts/pulseaudio-control.bash down
+;label-padding = 2
+label-foreground = ${colors.bg}
+
+
