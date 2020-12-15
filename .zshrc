@@ -334,4 +334,8 @@ fi
 #vimhelp ()    { vim -c "help $1" -c on -c "au! VimEnter *" }
 
 source /home/user/.config/broot/launcher/bash/br
+
+eval "$(starship init zsh)"
+
 ## END OF FILE #################################################################
+

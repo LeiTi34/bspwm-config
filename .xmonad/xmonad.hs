@@ -16,6 +16,7 @@ import XMonad.Util.Run
 -- Layouts
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.ResizableThreeColumns
+--import XMonad.Layout.Fullscreen
 
 -- LayoutModifiers
 import XMonad.Layout.LayoutModifier
@@ -31,9 +32,11 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops(fullscreenEventHook,ewmh)
 
-import XMonad.Config.Desktop(desktopConfig)
+--import XMonad.Config.Desktop(desktopConfig)
 
 import Graphics.X11.ExtraTypes.XF86
+
+--import System.Taffybar.Support.PagerHints (pagerHints)
 
 import qualified DBus as D
 import qualified DBus.Client as D
@@ -45,7 +48,7 @@ import qualified Data.Map        as M
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal      = "alacritty"
+myTerminal      = "alacritty -e fish"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -249,6 +252,7 @@ myLayout = avoidStruts $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
                       ||| threeCol
                       ||| Mirror tiled
                       ||| Full
+                      -- ||| fullscreenFull Full
 
 --( [> gaps [(U,5), (R,5), (D,5),(L,5)] $ Tall 1 (3/100) (1/2) ||| <] tiled ||| Mirror tiled ||| Full)
   --where
