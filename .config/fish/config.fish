@@ -1,7 +1,7 @@
 set -g -x PATH /usr/local/bin $PATH
 set fish_greeting
 
-thefuck --alias | source
+#thefuck --alias | source
 
 function fish_greeting
     /opt/shell-color-scripts/colorscript.sh -r
@@ -18,5 +18,7 @@ fish_vi_key_bindings
 #    end
 #end
 
+complete -c cheat.sh -xa '(curl -s cheat.sh/:list)'
+complete -c cht.sh -xa '(curl -s cheat.sh/:list)'
 
 starship init fish | source

@@ -45,46 +45,6 @@ font-3 = "Font Awesome 5 Brands:pixelsize=11;3"
 font-4 = "MaterialDesignIcons-Regular:pixelsize=11;2"
 font-5 = "MaterialDesignIcons-Regular:pixelsize=10;3"
 
-; Position of the system tray window
-; If empty or undefined, tray support will be disabled
-; NOTE: A center aligned tray will cover center aligned modules
-;
-; Available positions:
-;   left
-;   center
-;   right
-;   none
-tray-position = right
-
-; If true, the bar will not shift its
-; contents when the tray changes
-tray-detached = false
-
-; Tray icon max size
-tray-maxsize = 16
-
-; DEPRECATED! Since 3.3.0 the tray always uses pseudo-transparency
-; Enable pseudo transparency
-; Will automatically be enabled if a fully transparent
-; background color is defined using `tray-background`
-;tray-transparent = false
-
-; Background color for the tray container 
-; ARGB color (e.g. #f00, #ff992a, #ddff1023)
-; By default the tray container will use the bar
-; background color.
-tray-background = ${colors.bg}
-
-; Tray offset defined as pixel value (e.g. 35) or percentage (e.g. 50%)
-tray-offset-x = 0
-tray-offset-y = 0
-; Pad the sides of each tray icon
-tray-padding = 0
-; Scale factor for tray clients
-tray-scale = 1.0
-;wm-restack = bspwm
-override-redirect=true
-
 [bar/datetime]
 monitor = ${env:MONITOR:}
 background=#0cffe1
@@ -182,7 +142,7 @@ bottom = false
 monitor = ${env:MONITOR:}
 screenchange-reload = true
 ;wm-restack = none
-;override-redirect = false
+override-redirect = false
 
 ;-------;
 ; FONTS ;
@@ -218,8 +178,8 @@ modules-left = time date pulseaudio-control backlight battery0 player-mpris-simp
 modules-center = bspwm
 modules-right = system-bluetooth-bluetoothctl wlan network updates-arch-combined cpu memory
 
-;tray-position = none
-;tray-detached = true
+tray-position = none
+tray-detached = true
 
 ;enable-ipc = true
 

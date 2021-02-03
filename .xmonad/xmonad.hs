@@ -32,7 +32,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops(fullscreenEventHook,ewmh)
 
---import XMonad.Config.Desktop(desktopConfig)
+import XMonad.Config.Desktop(desktopConfig)
 
 import Graphics.X11.ExtraTypes.XF86
 

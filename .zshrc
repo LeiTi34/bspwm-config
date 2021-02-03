@@ -333,6 +333,7 @@ fi
 #vimpm ()      { vim `perldoc -l $1 | sed -e 's/pod$/pm/'` }
 #vimhelp ()    { vim -c "help $1" -c on -c "au! VimEnter *" }
 
+bindkey -v
 source /home/user/.config/broot/launcher/bash/br
 
 eval "$(starship init zsh)"

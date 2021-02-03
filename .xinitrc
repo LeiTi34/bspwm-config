@@ -46,6 +46,9 @@ feh --bg-scale /home/user/Bilder/Wallpaper.png &
 # bspwm
 #exec bspwm 
 export EDITOR=/usr/bin/nvim
+
+exec nextcloud &
+
 # xmonad
 exec xmonad
 
